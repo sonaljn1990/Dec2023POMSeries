@@ -45,7 +45,6 @@
 		</dependency>
 
 
-
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
@@ -102,8 +101,12 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>${aspectj.version}</version>
 		</dependency>
-
-
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.26</version> <!-- Check for the latest version -->
+			<scope>provided</scope>
+		</dependency>
 
 
 	</dependencies>
@@ -118,7 +121,13 @@
 				<configuration>
 					<source>11</source>
 					<target>11</target>
+					<compilerArgs>
+						<arg>--add-exports</arg>
+						<arg>
+							jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+					</compilerArgs>
 				</configuration>
+				
 			</plugin>
 
 
@@ -131,7 +140,8 @@
 					<forkCount>3</forkCount>
 					<reuseForks>true</reuseForks>
 					<suiteXmlFiles>
-						<suiteXmlFile>src/test/resources/testrunners/testng_regression.xml</suiteXmlFile>
+						<suiteXmlFile>
+							src/test/resources/testrunners/testng_regression.xml</suiteXmlFile>
 						<!-- <suiteXmlFile>${suiteXmlFile}</suiteXmlFile> -->
 					</suiteXmlFiles>
 
